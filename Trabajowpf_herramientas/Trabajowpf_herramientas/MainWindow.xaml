@@ -1,0 +1,323 @@
+﻿<Window x:Class="Trabajowpf_herramientas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Trabajowpf_herramientas" xmlns:viewmodels="clr-namespace:Trabajowpf_herramientas.Vistas"
+        mc:Ignorable="d"
+        Title="User" Height="600" Width="1000"
+        Background="Transparent"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True">
+    <!--#region DATATEMPLATE-->
+    <!--#endregion-->
+    <Border CornerRadius="10"
+            Background="GhostWhite">
+        <Grid Name="Principal"
+              Background="Transparent">
+            <!--#Region Header-->
+            <Grid x:Name="Header" 
+                  Height="35"
+                  VerticalAlignment="Top"
+                  Background="Transparent">
+                <Border CornerRadius="10,10,0,0" 
+                        Background="#24F9F2"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <!--#region Title-->
+                    <TextBlock Text="Inicio" 
+                               Grid.Column="0"
+                               Foreground="Black"
+                               FontSize="20"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="20,0,0,0"/>
+                    <!--#endregion-->
+                    <!--#Region mi cuenta-->
+                    <Button x:Name="BtnMicuenta"
+                            Grid.Column="1"
+                            Background="Transparent"
+                            FontSize="15"
+                            BorderBrush="Transparent"
+                            Foreground="Black"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            Cursor="Hand"
+                            >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1"
+                                       Text="Mi cuenta"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"/>
+                            <Image Grid.Column="0" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Source="/SMS/IMS/Configuracion.png"/> 
+                        </Grid>
+                    </Button>
+                    <!--#endregion-->
+                    <!--#region Info-->
+                    <Button x:Name="BtnInfo"
+                            Grid.Column="1"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Foreground="Black"
+                            FontSize="15"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Cursor="Hand">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/SMS/IMS/Info.png"
+                                   Grid.Column="0"
+                                   VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="Acerca de"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="5,0,0,0"/>
+                        </Grid>
+                        
+                    </Button>
+                    <!--#endregion-->
+                    <!--#Region Minimizar-->
+                    <Button x:Name="BtnMinimizar"
+                            Grid.Column="2"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            Height="25"
+                            Width="25"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="0,5,30,0" Click="Minimizar">
+                        <Image Source="/SMS/IMS/Minimizar.png"
+                               Cursor="Hand"/>
+                    </Button>
+                    <!--#endregion-->
+                    <!--#region Cerrar-->
+                    <Button x:Name="BtnCerrar"
+                            Grid.Column="2"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            Height="25"
+                            Width="25"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="0,5,5,0" Click="Cerrar">
+                        <Image Source="/SMS/IMS/Salir.png"
+                               Cursor="Hand"/>
+                    </Button>
+                    <!--#endregion-->
+                </Grid>
+            </Grid>
+            <!--#Endregion-->
+            <!--#region Horizontales-->
+            <Grid x:Name="Menu"
+                  Background="Transparent"
+                  Width="75"
+                  HorizontalAlignment="Left"
+                  Margin="0,35,0,0">
+                <Border Background="#0DD4CD"
+                        CornerRadius="0,0,0,10"/>
+                <!--#region Menu-->
+                <StackPanel Background="Transparent"
+                            VerticalAlignment="Top">
+                    <!--#region Mostrar/esconder-->
+                    <Grid Background="Transparent"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          Margin="0,10,10,0">
+                        <ToggleButton x:Name="BtnShowhide"
+                                      Width="30"
+                                      Height="30"
+                                      BorderBrush="Transparent" Checked="Tbshow" Unchecked="Tbhide"
+                                      Cursor="Hand">
+                            <ToggleButton.Background>
+                                <ImageBrush ImageSource="/SMS/IMS/Abrir.png"/>
+                            </ToggleButton.Background>
+                            <ToggleButton.Triggers>
+                                <!--#region Ocultar-->
+                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                    <BeginStoryboard>
+                                        <Storyboard x:Name="HidePanel">
+                                            <DoubleAnimation Storyboard.TargetName="Menu"
+                                                             Storyboard.TargetProperty="Width"
+                                                             BeginTime="0:0:0"
+                                                             From="200" To="75"
+                                                             Duration="0:0:0:0.5"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <!--#endregion-->
+                                <!--#region Mostrar-->
+                                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                    <BeginStoryboard>
+                                        <Storyboard x:Name="ShowPanel">
+                                            <DoubleAnimation Storyboard.TargetName="Menu"
+                                                             Storyboard.TargetProperty="Width"
+                                                             BeginTime="0:0:0"
+                                                             From="75" To="200"
+                                                             Duration="0:0:0:0.5"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <!--#endregion-->
+                            </ToggleButton.Triggers>
+                        </ToggleButton>
+                    </Grid>
+                    <!--#endregion-->
+                    <!--#region Lista-->
+                    <ListView Background="Transparent"
+                              BorderBrush="Transparent"
+                              Margin="0,30,0,0"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <!--#region Inicio-->
+                        <ListViewItem Height="70">
+                            <Button Name="BtnInicio"
+                                    Height="70"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           Source="/SMS/IMS/Home.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Inicio"
+                                               FontWeight="SemiBold"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region Punto-->
+                        <ListViewItem Height="70">
+                            <Button Name="BtnPunt"
+                                    Height="70"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           Source="/SMS/IMS/Ubic.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Punto de venta"
+                                               FontWeight="SemiBold"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region Producto-->
+                        <ListViewItem Height="70">
+                            <Button Name="BtnPro"
+                                    Height="70"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent" Click="Products">
+                                <Grid Width="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           Source="/SMS/IMS/Producto.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Producto"
+                                               FontWeight="SemiBold"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                    </ListView>
+                    <!--#endregion-->
+                        <!--#region User-->
+                    <ListViewItem Height="70">
+                        <Button Name="BtnUser"
+                                    Height="70"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent" Click="Usuarios">
+                            <Grid Width="200">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           Source="/SMS/IMS/Usuario.png"/>
+                                <TextBlock Grid.Column="1"
+                                               Text="Usuarios"
+                                               FontWeight="SemiBold"
+                                               FontSize="15"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                    </ListViewItem>
+                </StackPanel>
+                <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
+            <!--#endregion-->
+            <!--#endregion-->
+            <!--#region Content-->
+            <Grid x:Name="GridContent"
+                  Background="Transparent"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right"
+                  Height="565"
+                  Width="925" PreviewMouseLeftButtonDown="PMLB">
+                <Border CornerRadius="0,0,0,10"
+                        Background="#AFF8FF"/>
+                <TextBlock Text="Bienvenido"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="50" PreviewMouseLeftButtonUp="PMLB"/>
+                <ContentControl Content="{Binding}"/>
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+    </Border>
+
+</Window>

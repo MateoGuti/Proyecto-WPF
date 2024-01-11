@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="Trabajowpf_herramientas.Vistas.Productos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trabajowpf_herramientas.Vistas"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border CornerRadius="10"
+            Background="#AFF8FF">
+        <Grid Name="GridUsuarios">
+            <!--#region Columnas&Filas-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <!--#region Titulo-->
+            <TextBlock Grid.Row="0"
+                       Grid.ColumnSpan="6"
+                       Text="Productos vendidos"
+                       Foreground="Black"
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+            <!--#endregion-->
+            <!--#region Buscador-->
+            <!--#region Texto-->
+            <TextBlock Text="Buscar por id"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       FontSize="15"
+                       Margin="0,0,10,0"/>
+            <!--#endregion-->
+            <!--#region Texbox-->
+            <TextBox TextAlignment="Center"
+                     Background="Transparent"
+                     BorderBrush="Black"
+                     Grid.Column="1"
+                     Grid.Row="2"
+                     FontSize="20"
+                     Name="txtConsultarP" 
+                     Grid.ColumnSpan="2" 
+                     HorizontalAlignment="Left" 
+                     Margin="221,0,0,0" 
+                     Width="221"/>
+            <!--#endregion-->
+            <!--#region Btn buscar-->
+            <Button Grid.Column="3"
+                    Grid.Row="2"
+                    Background="Blue"
+                    BorderBrush="Blue"
+                    Margin="10,0,0,0"
+                    Cursor="Hand"
+                    Width="100"
+                    Name="BtnBuscar"
+                    HorizontalAlignment="Left"
+                    Content="Consultar"
+                    Foreground="White"
+                    Click="CONP"/>
+            <!--#endregion-->
+            <!--#region Btn agregar usuario-->
+            <Button Background="Blue"
+                    BorderBrush="Blue"
+                    Grid.Column="4"
+                    Grid.Row="2"
+                    Cursor="Hand"
+                    Width="160"
+                    Name="BtnCrearUsuario"
+                    Content="Funcionalidades de producto"
+                    Foreground="White"
+                    Click="AGGproducto"
+                    />
+            <!--#endregion-->
+            <!--#region Datagrid-->
+            <DataGrid Grid.Row="4"
+                      Grid.Column="1"
+                      Grid.RowSpan="2"
+                      Grid.ColumnSpan="4"
+                      Name="GridProductos"
+                      AutoGenerateColumns="False"
+                      Background="GhostWhite"
+                      Foreground="Black"
+                      FontSize="15"
+                      CanUserAddRows="False"
+                      CanUserResizeColumns="True"
+                      CanUserResizeRows="False"
+                      CanUserSortColumns="False"
+                      RowBackground="Transparent"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="Horizontal"
+                      HorizontalGridLinesBrush="#AFF8FF"
+                      >
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header=""
+                                            Width="0">
+
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Id"
+                                        Width="*"
+                                        Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="Nombre"
+                                        Width="*"
+                                        Binding="{Binding nombre_producto}"/>
+                    <DataGridTextColumn Header="Precio"
+                                        Width="*"
+                                        Binding="{Binding precio}"/>
+                    <DataGridTextColumn Header="Cantidad"
+                                        Width="*"
+                                        Binding="{Binding cantidad}"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+            <!--#endregion-->
+
+            <!--#endregion-->
+            <!--#region FRAME-->
+            <Frame Name="FUProducto"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.RowSpan="8"
+                   Grid.ColumnSpan="6"/>
+            <!--#endregion-->
+        </Grid>
+    </Border>
+    <!--#endregion-->
+</UserControl>
